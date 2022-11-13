@@ -1,8 +1,8 @@
 /// Support for doing something awesome.
 ///
 /// More dartdocs go here.
-library pencill_data;
+library data_layer;
 
-export 'src/pencill_data_base.dart';
+export 'src/remote_api.dart';
 
 // TODO: Export any libraries intended for clients of this package.
