@@ -62,6 +62,8 @@ class RemoteAPI {
       String pQueryParameters = ''}) async {
     late final http.Response response;
 
+    print('Remote API Token : $token');
+
     var fullUrl =
         '$baseUrl/$pEndPoint/$pResource${pQueryParameters != '' ? '$queryParameters?populate=*' : '?populate=*'}';
 
