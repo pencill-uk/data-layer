@@ -1,4 +1,5 @@
 import 'package:data_layer/data_layer.dart';
+import 'package:data_layer/src/account/account_repository.dart';
 
 void main() {
   String baseUrl = 'https://pencill-cms-app.azurewebsites.net/api';
@@ -9,8 +10,7 @@ void main() {
 
   print('Token : $token');
 
-  var remoteAPI = RemoteAPI(pBaseUrl: baseUrl, pToken: token);
+  AccountRepository accountRepository = AccountRepository();
 
-  remoteAPI.getJsonData(
-      pEndPoint: 'accounts', pResource: '1', pQueryParameters: '');
+  accountRepository.getAccount('1').then((value) => print('Account : $value'));
 }

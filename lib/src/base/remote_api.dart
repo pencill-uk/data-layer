@@ -5,8 +5,7 @@ import 'package:http/http.dart' as http;
 import 'app_exception.dart';
 
 class RemoteAPI {
-  late final String
-      baseUrl; // = 'https://pencill-cms-app.azurewebsites.net/api';
+  String baseUrl = 'https://pencill-cms-app.azurewebsites.net/api';
 
   String endpoint = '';
   String queryParameters = '';
@@ -22,9 +21,9 @@ class RemoteAPI {
         'Bearer 70f17c23e3b829d8b710cc2ffb261f9557b4415a89d1e008c262ceaacf52f711eaa6bf5d13ed82ae8af0a1226ade5c015f7c4381b64f8fca2a1c4c4998ac4ea983ec277ed354aa12a10ed2ce7baa3c88722fda7e3f6f73ca45ba59c1b0e3dd1367f1c226dfca0777eb2ce225d6b2ac21e2969c3f9a350fe25702b4fc941d046c'
   };
 
-  RemoteAPI({required String pBaseUrl, required String pToken}) {
-    baseUrl = pBaseUrl;
-    token = pToken;
+  RemoteAPI({String pBaseUrl = '', String pToken = ''}) {
+    baseUrl = pBaseUrl == '' ? baseUrl : pBaseUrl;
+    token = pToken == '' ? token : pToken;
 
     headers = {
       "Content-Type": "application/json; charset=UTF-8",
@@ -75,7 +74,7 @@ class RemoteAPI {
         headers: headers,
       );
 
-      print('Remote API Response Body: ' + response.body);
+      print('Remote API Response Body: ${response.body}');
     } on SocketException {
       throw FetchDataException('No Internet connection', 'ERROR-1001');
     } catch (e) {
