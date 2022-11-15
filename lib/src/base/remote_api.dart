@@ -86,17 +86,23 @@ class RemoteAPI {
     // return Future.value("[" + response.body + "]");
   }
 
-  Future<dynamic> postJsonData({required Map<String, dynamic> pBody}) async {
+  Future<dynamic> postJsonData(
+      {required String pEndPoint, required String pBody}) async {
     late final http.Response response;
+
+    var fullUrl = '$baseUrl/$pEndPoint';
+
+    print('Remote API Post URL : $fullUrl | Body : $pBody');
 
     try {
       response = await http.post(
-        Uri.parse(url),
+        Uri.parse(fullUrl),
         headers: headers,
-        body: json.encode(pBody),
+        body: pBody,
       );
 
-      print('Remote API : ${response.body}');
+      print(
+          'Remote API Post: ${response.body} | Status Code: ${response.statusCode} | Response Header: ${response.headers}');
 
       return Future.value(processResponse(response));
     } catch (e) {

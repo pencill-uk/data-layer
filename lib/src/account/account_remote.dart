@@ -1,3 +1,4 @@
+import 'dart:convert';
 import '../base/remote_api.dart';
 
 class AccountRemote extends RemoteAPI {
@@ -8,7 +9,8 @@ class AccountRemote extends RemoteAPI {
   Future<String> postAccount(Map<String, dynamic> pJsonData) async {
     endpoint = "accounts";
 
-    return Future.value(await super.postJsonData(pBody: pJsonData));
+    return Future.value(await super
+        .postJsonData(pEndPoint: 'accounts', pBody: json.encode(pJsonData)));
   }
 
   Future<String> getAccount(String pIdentifier, String pMethod) async {
