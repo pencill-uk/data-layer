@@ -61,12 +61,12 @@ class RemoteBase {
       String pQueryParameters = ''}) async {
     late final http.Response response;
 
-    print('Remote API Token : $token');
+    // print('Remote API Token : $token');
 
     var fullUrl =
         '$baseUrl/$pEndPoint/$pResource${pQueryParameters != '' ? '$queryParameters?populate=*' : '?populate=*'}';
 
-    print('Remote API URL: $fullUrl');
+    // print('Remote API URL: $fullUrl');
 
     try {
       response = await http.get(
@@ -74,7 +74,7 @@ class RemoteBase {
         headers: headers,
       );
 
-      print('Remote API Response Body: ${response.body}');
+      // print('Remote API Response Body: ${response.body}');
     } on SocketException {
       throw FetchDataException('No Internet connection', 'ERROR-1001');
     } catch (e) {
@@ -92,7 +92,7 @@ class RemoteBase {
 
     var fullUrl = '$baseUrl/$pEndPoint';
 
-    print('Remote API Post URL : $fullUrl | Body : $pBody');
+    // print('Remote API Post URL : $fullUrl | Body : $pBody');
 
     try {
       response = await http.post(
@@ -101,12 +101,12 @@ class RemoteBase {
         body: pBody,
       );
 
-      print(
-          'Remote API Post: ${response.body} | Status Code: ${response.statusCode} | Response Header: ${response.headers}');
+      // print(
+      //     'Remote API Post: ${response.body} | Status Code: ${response.statusCode} | Response Header: ${response.headers}');
 
       return Future.value(processResponse(response));
     } catch (e) {
-      print(e);
+      print('postJsonData Post Error: $e');
     }
     return Future.value(processResponse(response));
   }
@@ -123,7 +123,7 @@ class RemoteBase {
 
       return Future.value(processResponse(response));
     } catch (e) {
-      print(e);
+      print('Remote API Error: $e');
     }
     return Future.value(processResponse(response));
   }
