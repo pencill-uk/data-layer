@@ -1,7 +1,7 @@
 import 'dart:convert';
-import '../base/remote_api.dart';
+import '../base/remote_base.dart';
 
-class AccountRemote extends RemoteAPI {
+class AccountRemote extends RemoteBase {
   AccountRemote() : super(pBaseUrl: '', pToken: '') {
     super.endpoint = "accounts";
   }

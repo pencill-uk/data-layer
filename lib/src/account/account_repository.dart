@@ -1,8 +1,6 @@
 import 'account_remote.dart';
 
 class AccountRepository {
-  AccountRepository() {}
-
   Future<String> getAccount(String pIdentifier) async {
     // print('getAccount pIdentifier: $pIdentifier');
 
@@ -21,5 +19,10 @@ class AccountRepository {
       // return decodedJson;
       return value;
     });
+  }
+
+  Future<String> authenticateAccount(
+      {required String pIdentifier, required String pPassword}) {
+    return getAccount("1");
   }
 }

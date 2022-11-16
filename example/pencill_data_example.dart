@@ -14,31 +14,33 @@ void main() {
 
   AccountRepository accountRepository = AccountRepository();
 
-  accountRepository.getAccount('1').then((value) {
+  accountRepository
+      .authenticateAccount(pIdentifier: "ram@anogaa.com", pPassword: "qazxsw")
+      .then((value) {
     print('getAccount value: $value');
 
-    String body = """{
-    "data": {
-        "accountName": "Ram 1 Account",
-        "accountType": "Parent",
-        "accountStatus": true,
-        "createdAt": "2022-11-06T19:51:48.797Z",
-        "updatedAt": "2022-11-06T21:41:38.210Z",
-        "users": [
-           1
-        ],
-        "children": [],
-        "marketingPreferences": {
-            "emailOptIn": true,
-            "smsOptIn": true,
-            "marketingOptIn": true,
-            "postalOptIn": false
-        }
-    }
-}""";
+//     String body = """{
+//     "data": {
+//         "accountName": "Ram 1 Account",
+//         "accountType": "Parent",
+//         "accountStatus": true,
+//         "createdAt": "2022-11-06T19:51:48.797Z",
+//         "updatedAt": "2022-11-06T21:41:38.210Z",
+//         "users": [
+//            1
+//         ],
+//         "children": [],
+//         "marketingPreferences": {
+//             "emailOptIn": true,
+//             "smsOptIn": true,
+//             "marketingOptIn": true,
+//             "postalOptIn": false
+//         }
+//     }
+// }""";
 
-    accountRepository.postAccount(json.decode(body)).then((value) {
-      print('postAccount value: $value');
-    });
+    // accountRepository.postAccount(json.decode(body)).then((value) {
+    //   print('postAccount value: $value');
+    // });
   });
 }
