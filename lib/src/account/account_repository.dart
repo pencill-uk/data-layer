@@ -23,6 +23,16 @@ class AccountRepository {
 
   Future<String> authenticateAccount(
       {required String pIdentifier, required String pPassword}) {
-    return getAccount("1");
+    Future<String> account = getAccount("1");
+
+    account.then((value) {
+      print('getAccount value: $value');
+      if (value != "") {
+        return value;
+      } else {
+        return "";
+      }
+    });
+    return account;
   }
 }

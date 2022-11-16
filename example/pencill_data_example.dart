@@ -17,8 +17,13 @@ void main() {
   accountRepository
       .authenticateAccount(pIdentifier: "ram@anogaa.com", pPassword: "qazxsw")
       .then((value) {
-    // print('getAccount value: $value');
+    print('getAccount value: $value');
 
+    if (value != "") {
+      return value;
+    } else {
+      return "";
+    }
 //     String body = """{
 //     "data": {
 //         "accountName": "Ram 1 Account",
