@@ -9,8 +9,8 @@ class AccountRemote extends RemoteBase {
   Future<String> postAccount(Map<String, dynamic> pJsonData) async {
     endpoint = "accounts";
 
-    return Future.value(await super
-        .postJsonData(pEndPoint: 'accounts', pBody: json.encode(pJsonData)));
+    return Future.value(
+        await super.postJsonData(pBody: json.encode(pJsonData)));
   }
 
   Future<String> getAccount(String pIdentifier, String pMethod) async {
@@ -19,8 +19,6 @@ class AccountRemote extends RemoteBase {
     String tQueryParameters = '/$pIdentifier';
 
     return Future.value(await super.getJsonData(
-        pEndPoint: 'accounts',
-        pResource: pIdentifier,
-        pQueryParameters: tQueryParameters) as String);
+        pResource: pIdentifier, pQueryParameters: tQueryParameters) as String);
   }
 }

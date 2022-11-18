@@ -1,7 +1,7 @@
 import 'account_remote.dart';
 
 class AccountRepository {
-  Future<String> getAccount(String pIdentifier) async {
+  Future<String> fetchAccount(String pIdentifier) async {
     // print('getAccount pIdentifier: $pIdentifier');
 
     return AccountRemote().getAccount(pIdentifier, "email").then((value) {
@@ -11,7 +11,7 @@ class AccountRepository {
     });
   }
 
-  Future<String> postAccount(Map<String, dynamic> pJsonData) async {
+  Future<String> createAccount(Map<String, dynamic> pJsonData) async {
     print('postAccount pJsonData: $pJsonData');
 
     return AccountRemote().postAccount(pJsonData).then((value) {
@@ -21,18 +21,18 @@ class AccountRepository {
     });
   }
 
-  Future<String> authenticateAccount(
-      {required String pIdentifier, required String pPassword}) {
-    Future<String> account = getAccount("1");
+  // Future<String> authenticateAccount(
+  //     {required String pIdentifier, required String pPassword}) {
+  //   Future<String> account = fetchAccount("1");
 
-    account.then((value) {
-      print('getAccount value: $value');
-      if (value != "") {
-        return value;
-      } else {
-        return "";
-      }
-    });
-    return account;
-  }
+  //   account.then((value) {
+  //     print('fetchAccount value: $value');
+  //     if (value != "") {
+  //       return value;
+  //     } else {
+  //       return "";
+  //     }
+  //   });
+  //   return account;
+  // }
 }
