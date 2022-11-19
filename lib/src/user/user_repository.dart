@@ -27,13 +27,26 @@ class UserRepository {
   }
 
   bool isCurrentUserAuthenticated() {
-    String? token = _userLocal.fetchToken();
+    Map<String, dynamic>? token = _userLocal.fetchToken();
 
     print('lastAutenticatedUserStatus: $token');
-    if (token != "") {
+    if (token != null && token.isNotEmpty) {
       return true;
     } else {
       return false;
+    }
+  }
+
+  Future<String> getCurrentUser() async {
+    Map<String, dynamic>? token = _userLocal.fetchToken();
+
+    print('lastAutenticatedUserStatus: $token');
+    if (token != null) {
+      return _userRemote.getUserById(pId: token['id']).then((value) {
+        return value;
+      });
+    } else {
+      return Future.value("");
     }
   }
 
