@@ -44,7 +44,7 @@ class UserRepository {
 
     print('lastAutenticatedUserStatus: $token');
     if (token != null) {
-      return _userRemote.getUserById(pId: token['id']).then((value) {
+      return _userRemote.getUserById(pId: token['id'].toString()).then((value) {
         print("getCurrentUser: $value");
         return value;
       });
