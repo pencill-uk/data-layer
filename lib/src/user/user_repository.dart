@@ -60,6 +60,7 @@ class UserRepository {
     if (userJson != "") {
       extractToken(pUserJson: userJson);
       var tId = extractUserId(pUserJson: userJson);
+      print('authenticateUser tId: $tId');
       return _userRemote.getUserById(pId: tId);
     } else {
       return "";
