@@ -53,16 +53,23 @@ class UserRepository {
 
   Future<String> authenticateUser(
       {required String pIdentifier, required String pPassword}) async {
-    String user = await _userRemote.authenticateUser(
+    String userJson = await _userRemote.authenticateUser(
         pIdentifier: pIdentifier, pPassword: pPassword);
 
-    print('authenticateUser value: $user');
-    if (user != "") {
-      extractToken(pUserJson: user);
-      return json.encode(json.decode(user)['user']);
+    print('authenticateUser value: $userJson');
+    if (userJson != "") {
+      extractToken(pUserJson: userJson);
+      var tId = extractUserId(pUserJson: userJson);
+      return _userRemote.getUserById(pId: tId);
     } else {
       return "";
     }
+  }
+
+  String extractUserId({required String pUserJson}) {
+    Map<String, dynamic> decodedJson = json.decode(pUserJson);
+    print(decodedJson);
+    return decodedJson['jwt'];
   }
 
   void extractToken({required String pUserJson}) {
