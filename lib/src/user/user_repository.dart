@@ -66,7 +66,9 @@ class UserRepository {
 
   void extractToken({required String pUserJson}) {
     var tJwtToken = json.decode(pUserJson)['jwt'];
+    print("Extract Token JWT: $tJwtToken");
     _userRemote.updateToken(pToken: tJwtToken);
     _userLocal.saveToken(pToken: tJwtToken);
+    print("Extract Token: $_userLocal.fetchToken()");
   }
 }
