@@ -70,7 +70,7 @@ class UserRepository {
   String extractUserId({required String pUserJson}) {
     Map<String, dynamic> decodedJson = json.decode(pUserJson);
     print(decodedJson);
-    return decodedJson['jwt'];
+    return decodedJson['jwt']['id'];
   }
 
   void extractToken({required String pUserJson}) {
