@@ -11,6 +11,13 @@ class UserRemote extends RemoteBase {
         await super.postJsonData(pBody: json.encode(pJsonData)));
   }
 
+  Future<String> getUserById({required String pId}) async {
+    String tQueryParameters = '/$pId';
+
+    return Future.value(await super.getJsonData(
+        pResource: pId, pQueryParameters: tQueryParameters) as String);
+  }
+
   Future<String> getUser(String pIdentifier, String pMethod) async {
     // String tQueryParameters = 'method=$pMethod&identifier=$pIdentifier';
 
