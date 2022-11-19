@@ -70,6 +70,7 @@ class UserRepository {
     print("Extract Token JWT: $tJwtToken");
     _userRemote.updateToken(pToken: tJwtToken);
     _userLocal.saveToken(pToken: tJwtToken);
-    print("Extract Token: $_userLocal.fetchToken()");
+    var tToken = _userLocal.fetchToken();
+    print("Extract Token: $tToken");
   }
 }

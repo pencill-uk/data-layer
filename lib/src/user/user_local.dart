@@ -24,6 +24,8 @@ class UserLocal extends LocalBase {
         ? window.localStorage["csrf"]
         : "";
 
+    print("fetchToken | CSRFToken: $csrfToken");
+
     if (csrfToken != "" && csrfToken != null) {
       Map<String, dynamic> decodedToken = JwtDecoder.decode(csrfToken);
 
