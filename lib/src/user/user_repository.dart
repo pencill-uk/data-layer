@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:jwt_decoder/jwt_decoder.dart';
+
 import 'user_local.dart';
 import 'user_remote.dart';
 
@@ -58,8 +60,8 @@ class UserRepository {
 
     print('authenticateUser value: $userJson');
     if (userJson != "") {
-      extractToken(pUserJson: userJson);
-      var tId = extractUserId(pUserJson: userJson);
+      String tToken = extractToken(pUserJson: userJson);
+      var tId = extractUserIdFromToken(pJwtToken: tToken);
       print('authenticateUser tId: $tId');
       return _userRemote.getUserById(pId: tId);
     } else {
@@ -67,18 +69,18 @@ class UserRepository {
     }
   }
 
-  String extractUserId({required String pUserJson}) {
-    Map<String, dynamic> decodedJson = json.decode(pUserJson);
-    print(decodedJson);
-    return decodedJson['jwt']['id'];
+  String extractUserIdFromToken({required String pJwtToken}) {
+    var tToken = JwtDecoder.decode(pJwtToken);
+    return tToken['id'];
   }
 
-  void extractToken({required String pUserJson}) {
+  String extractToken({required String pUserJson}) {
     var tJwtToken = json.decode(pUserJson)['jwt'];
     print("Extract Token JWT: $tJwtToken");
     _userRemote.updateToken(pToken: tJwtToken);
     _userLocal.saveToken(pToken: tJwtToken);
     var tToken = _userLocal.fetchToken();
     print("Extract Token: $tToken");
+    return tToken.toString();
   }
 }
