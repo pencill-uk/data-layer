@@ -97,7 +97,7 @@ class RemoteBase {
 
     var fullUrl = '$baseUrl/$endpoint';
 
-    // print('Remote API Post URL : $fullUrl | Body : $pBody | Header : $headers');
+    print('Remote API Post URL : $fullUrl | Body : $pBody | Header : $headers');
 
     try {
       response = await http.post(
@@ -106,8 +106,8 @@ class RemoteBase {
         body: pBody,
       );
 
-      // print(
-      //     'Remote API Post: ${response.body} | Status Code: ${response.statusCode} | Response Header: ${response.headers}');
+      print(
+          'Remote API Post: ${response.body} | Status Code: ${response.statusCode} | Response Header: ${response.headers}');
 
       return Future.value(processResponse(response));
     } catch (e) {

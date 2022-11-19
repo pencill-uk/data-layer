@@ -79,8 +79,8 @@ class UserRepository {
     print("Extract Token JWT: $tJwtToken");
     _userRemote.updateToken(pToken: tJwtToken);
     _userLocal.saveToken(pToken: tJwtToken);
-    var tToken = _userLocal.fetchToken();
+    Map<String, dynamic>? tToken = _userLocal.fetchToken();
     print("Extract Token: $tToken");
-    return tToken.toString();
+    return tToken!['id'].toString();
   }
 }
